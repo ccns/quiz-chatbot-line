@@ -10,19 +10,19 @@ function doPost(e) {
 	if(userType === 'message') {
 		var userMsg = JSON.parse(e.postData.contents).events[0].message.text;       
 		switch(userMsg.toLowerCase()) {
-			case 'start':
+			case '/start':
 				userLogin(userId, userName);
 				botPush(userId, '▶ ' + botGreet());
 				botQues(reToken, userId);
 				break;
-			case 'help':
+			case '/help':
 				botPush(userId, 'start - 開始答題\nstatus - 查詢自己成績\nboard - 排行榜');
 				break;
-			case 'status':
+			case '/status':
 				var tmp = getStatus(userId);
 				botPush(userId, 'point - ' + tmp.point + '分\norder - 第' + tmp.order + '名\n全部' + tmp.total + '個人');
 				break;
-			case 'board':
+			case '/board':
 				botBoard(userId);
 				break;
 			default:
